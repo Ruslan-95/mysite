@@ -586,7 +586,7 @@
   .testimonials-avatar-box {
     position: absolute;
     top: 0;
-    left: -20px;
+    left: 0;
     transform: translate(15px, -25px);
     background: var(--bg-gradient-onyx);
     border-radius: 14px;
@@ -1423,7 +1423,7 @@
     }
   
     .testimonials-avatar-box {
-      transform: translate(30px, -30px);
+      transform: translate(-10px, -20px);
       border-radius: 20px;
       padding: 10px;
     }
