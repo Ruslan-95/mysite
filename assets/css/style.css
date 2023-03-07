@@ -3,14 +3,6 @@
 \*-----------------------------------*/
 
 
-/**
- * copyright 2022 @codewithsadee
- */
-
-
-
-
-
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
@@ -437,10 +429,24 @@
     padding-bottom: 4px;
     padding-left: 7px;
   }
+
+  .social-list-contact {
+    justify-content: center;
+    margin: 0px 0px 10px 0px;
+  }
   
   .social-item .social-link {
     color: var(--light-gray-70);
     font-size: 18px;
+  }
+
+  .social-list-contact .social-item .social-link {
+    color: var(--light-gray);
+    font-size: 45px;
+  }
+
+  .social-list-contact .social-item .social-link:hover {
+    color: var(--white-1);
   }
   
   
