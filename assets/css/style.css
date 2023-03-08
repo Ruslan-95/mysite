@@ -585,7 +585,7 @@
   }
   
   .testimonials-item {
-    min-width: 100%;
+    min-width: 85%;
     scroll-snap-align: center;
   }
   
@@ -1255,6 +1255,8 @@
   
     .project-img,
     .blog-banner-box { height: auto; }
+
+    .testimonials-item { min-width: 85%;}
   
   }
   
