@@ -1257,9 +1257,17 @@
     .blog-banner-box { height: auto; }
 
     .testimonials-item { min-width: 85%;}
-  
   }
   
+  @media (max-width: 580px) {
+
+    .testimonials-avatar-box { padding: 10px 5px 10px 5px;}
+
+    .content-card {
+      min-height: 180px;
+    }
+  
+  }
   
   
   
@@ -1741,7 +1749,7 @@
   
     /* testimonials */
   
-    .testimonials-item { min-width: calc(50% - 15px); }
+    .testimonials-item { min-width: calc(50% - 50px); }
   
     /* clients */
   
