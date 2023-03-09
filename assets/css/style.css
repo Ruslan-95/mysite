@@ -394,7 +394,15 @@
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
+
+  .contacts-list-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contacts-list-page .contact-item {
+    margin: 20px auto 20px auto;
+  }
   .contact-item {
     min-width: 100%;
     display: flex;
@@ -1147,7 +1155,7 @@
     filter: grayscale(1) invert(1);
   }
   
-  .contact-form { margin-bottom: 10px; }
+  .contact-form { margin: 20px auto 40px auto }
   
   .form-title { margin-bottom: 20px; }
   
@@ -1260,12 +1268,12 @@
   }
   
   @media (max-width: 580px) {
+    
+    .contacts-list-page { grid-template-columns: 1fr; }
 
     .testimonials-avatar-box { padding: 10px 5px 10px 5px;}
 
-    .content-card {
-      min-height: 180px;
-    }
+    .content-card { min-height: 180px; }
   
   }
   
