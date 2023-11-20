@@ -1495,8 +1495,6 @@
     }
   
     .testimonials-avatar-box img { width: 80px; }
-
-    .sDevives-img { max-width: 50px; }
   
     .testimonials-item-title {
       margin-bottom: 10px;
@@ -1532,7 +1530,7 @@
       margin-bottom: 0;
     }
   
-    .modal-avatar-box img { width: 65px; }
+    .modal-avatar-box img { width: 65px; margin: 5px 0px;}
   
     .modal-img-wrapper > img {
       display: block;
