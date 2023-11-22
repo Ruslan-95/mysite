@@ -249,7 +249,7 @@
   
   .has-scrollbar::-webkit-scrollbar {
     width: 5px; /* for vertical scrollbar */
-    height: 5px; /* for horizontal scrollbar */
+    height: 10px; /* for horizontal scrollbar */
   }
   
   .has-scrollbar::-webkit-scrollbar-track {
@@ -259,7 +259,7 @@
   
   .has-scrollbar::-webkit-scrollbar-thumb {
     background: var(--orange-yellow-crayola);
-    border-radius: 5px;
+    border-radius: 10px;
   }
   
   .has-scrollbar::-webkit-scrollbar-button { width: 20px; }
@@ -787,7 +787,7 @@
   
   .cv {
     display: flex;
-    margin: 30px 0;
+    margin: 10px 0 30px;
   }
 
   .cv-link {
@@ -801,12 +801,10 @@
 {
    text-transform: uppercase;
   background-image: linear-gradient(
-    -225deg,
+    -280deg,
     #f7f7f7 0%,
-    var(--orange-yellow-crayola) 20%,
-    var(--bittersweet-shimmer) 50%,
-    var(--vegas-gold) 80%,
-    #f7f7f7 100%
+    var(--vegas-gold) 10%,
+    #f7f7f7 20%
   );
   background-size: auto auto;
   background-clip: border-box;
@@ -816,9 +814,33 @@
   text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textclip 2s linear infinite;
+  animation: textclip 5s reverse infinite;
   display: inline-block;
       /* font-size: 190px; */
+}
+
+.cv-linkedin {
+  margin: 0;
+}
+.cv-linkedin .animate-charcter {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    -280deg,
+
+    #f7f7f7 0%,
+    #bfaeff 10%,
+    #f7f7f7 20%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 5s both reverse infinite;
+  display: inline-block;
 }
 
 @keyframes textclip {
@@ -1943,5 +1965,9 @@
        */
   
     .timeline-text { max-width: 700px; }
+
+    del {color: var(--text-gradient-yellow);}
+
+    .modal-content .stack { color: burlywood;}
   
   }
