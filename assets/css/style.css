@@ -1191,7 +1191,30 @@
     font-weight: var(--fw-300);
     line-height: 1.6;
   }
+
+  .blog-posts-list-video {
+    display: flex;
+  }
   
+  .video-blog {
+    display: flex;
+    margin: 20px auto;
+  }
+
+  .iframe-blog {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+
+  }
+
+  .title-video {
+    max-width: inherit;
+  }
+  @media (max-width: 767px) {
+    .video-blog {
+      display: block;
+    }
+   }
   
   
   
