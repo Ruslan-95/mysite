@@ -439,8 +439,8 @@
   }
   
   .contact-info {
-    max-width: calc(100% - 46px);
-    width: calc(100% - 46px);
+    max-width: calc(100% - 24px);
+    width: calc(100% - 24px);
   }
   
   .contact-title {
@@ -1531,14 +1531,7 @@
   
     .separator { margin: 32px 0; }
   
-    .contacts-list { gap: 20px; }
-  
-    .contact-info {
-      max-width: calc(100% - 64px);
-      width: calc(100% - 64px);
-    }
-  
-  
+    .contacts-list { gap: 20px; }к
   
     /**
      * #NAVBAR
