@@ -203,7 +203,7 @@
 
 .contacts-list:not(.contacts-list-page) .icon-box {
   animation: contact-glow 10s ease-in-out infinite;
-  box-shadow: 0 0 0 rgba(227, 6, 19, 0.08);
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .contacts-list:not(.contacts-list-page) .contact-item:nth-child(1) .icon-box { animation-delay: 0s; }
@@ -212,17 +212,17 @@
 
 @keyframes contact-glow {
   0%, 100% {
-    box-shadow: 0 0 0 rgba(227, 6, 19, 0.0);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
     color: var(--orange-yellow-crayola);
     transform: scale(1);
   }
   30% {
-    box-shadow: 0 0 6px rgba(227, 6, 19, 0.25);
-    color: #E30613;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+    color: #f5f5f5;
     transform: scale(1.02);
   }
   60% {
-    box-shadow: 0 0 3px rgba(227, 6, 19, 0.1);
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.15);
     color: var(--orange-yellow-crayola);
     transform: scale(1.005);
   }
@@ -480,8 +480,21 @@
   }
 
   .social-list-contact {
+    position: relative;
     justify-content: center;
     margin: 0px 0px 10px 0px;
+  }
+
+  .social-list-contact::before {
+    content: "";
+    position: absolute;
+    inset: -12px -18px -10px -18px;
+    background: linear-gradient(120deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+    border-radius: 24px;
+    filter: blur(16px);
+    opacity: 0;
+    pointer-events: none;
+    animation: social-block-glow 12s ease-in-out infinite;
   }
   
   .social-list:not(.social-list-contact) .social-item .social-link {
@@ -2045,4 +2058,3 @@
   40% { opacity: 0.12; }
   70% { opacity: 0; }
 }
-
