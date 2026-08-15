@@ -1,159 +1,257 @@
 'use strict';
 
+// sidebar toggle (mobile)
+const sidebar = document.querySelector('[data-sidebar]');
+const sidebarBtn = document.querySelector('[data-sidebar-btn]');
 
+sidebarBtn?.addEventListener('click', () => sidebar?.classList.toggle('active'));
 
-// element toggle function
-const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
+// project modal
+const testimonialsItems = document.querySelectorAll('[data-testimonials-item]');
+const modalContainer = document.querySelector('[data-modal-container]');
+const modalCloseBtn = document.querySelector('[data-modal-close-btn]');
+const overlay = document.querySelector('[data-overlay]');
+const modalImg = document.querySelector('[data-modal-img]');
+const modalTitle = document.querySelector('[data-modal-title]');
+const modalText = document.querySelector('[data-modal-text]');
 
+let lastModalTrigger = null;
 
-
-// sidebar variables
-const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]");
-
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
-
-
-
-// testimonials variables
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
-
-// modal variable
-const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
-
-// modal toggle function
-const testimonialsModalFunc = function () {
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
-}
-
-// add click event to all modal items
-for (let i = 0; i < testimonialsItem.length; i++) {
-
-  testimonialsItem[i].addEventListener("click", function () {
-
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-    modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
-
-    testimonialsModalFunc();
-
-  });
-
-}
-
-// add click event to modal close button
-modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-overlay.addEventListener("click", testimonialsModalFunc);
-
-
-
-// custom select variables
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
-
-select.addEventListener("click", function () { elementToggleFunc(this); });
-
-// add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
-
-  });
-}
-
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
-const filterFunc = function (selectedValue) {
-
-  for (let i = 0; i < filterItems.length; i++) {
-
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
-    }
-
+const toggleModal = () => {
+  const isOpen = modalContainer?.classList.toggle('active');
+  overlay?.classList.toggle('active');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+  if (!isOpen && lastModalTrigger) {
+    lastModalTrigger.focus();
+    lastModalTrigger = null;
   }
+};
 
-}
+const openModal = (item) => {
+  lastModalTrigger = item;
+  const avatar = item.querySelector('[data-testimonials-avatar]');
 
-// add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
+  if (modalImg && avatar) {
+    modalImg.src = avatar.src;
+    modalImg.alt = avatar.alt;
+  }
+  if (modalTitle) modalTitle.innerHTML = item.querySelector('[data-testimonials-title]')?.innerHTML ?? '';
+  if (modalText) modalText.innerHTML = item.querySelector('[data-testimonials-text]')?.innerHTML ?? '';
 
-for (let i = 0; i < filterBtn.length; i++) {
+  toggleModal();
+  modalCloseBtn?.focus();
+};
 
-  filterBtn[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
-
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-
-  });
-
-}
-
-
-
-// contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
-
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
-
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
+testimonialsItems.forEach((item) => {
+  item.addEventListener('click', () => openModal(item));
+  item.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openModal(item);
     }
-
   });
+});
+
+modalCloseBtn?.addEventListener('click', toggleModal);
+overlay?.addEventListener('click', toggleModal);
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && modalContainer?.classList.contains('active')) toggleModal();
+});
+
+// contact form validation
+const form = document.querySelector('[data-form]');
+const formInputs = document.querySelectorAll('[data-form-input]');
+const formBtn = document.querySelector('[data-form-btn]');
+
+formInputs.forEach((input) => {
+  input.addEventListener('input', () => {
+    if (form && formBtn) formBtn.disabled = !form.checkValidity();
+  });
+});
+
+// page navigation
+const navigationLinks = document.querySelectorAll('[data-nav-link]');
+const pages = document.querySelectorAll('[data-page]');
+
+const showPage = (name) => {
+  pages.forEach((page) => page.classList.toggle('active', page.dataset.page === name));
+  navigationLinks.forEach((link) => link.classList.toggle('active', link.dataset.navLink === name));
+};
+
+navigationLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    showPage(link.dataset.navLink);
+    history.replaceState(null, '', `#${link.dataset.navLink}`);
+    window.scrollTo(0, 0);
+  });
+});
+
+// deep links: /#resume opens the Resume tab directly
+const initialPage = window.location.hash.slice(1);
+if ([...pages].some((page) => page.dataset.page === initialPage)) showPage(initialPage);
+
+// competency radar (Resume page)
+const radarSvg = document.getElementById('competency-radar');
+
+if (radarSvg) {
+  const COMPETENCIES = [
+    {
+      label: 'People Leadership & Talent Growth',
+      value: 1,
+      level: 'Expert',
+      text: 'Hired and grew a 100+ person engineering organisation; the Tech Mastery programme trained and certified 40+ engineers; chapter leads developed into force multipliers.',
+    },
+    {
+      label: 'Organisational Design at Scale',
+      value: 1,
+      level: 'Expert',
+      text: 'Designed the organisation behind three product tribes — structures, roles, governance and career paths — from a blank page to a working 100+ person system.',
+    },
+    {
+      label: 'Performance Engineering',
+      value: 0.55,
+      level: 'Proficient',
+      text: 'Built load-testing practices and a performance team with standardised playbooks for high-load systems (JMeter, Grafana, Vegeta).',
+    },
+    {
+      label: 'Execution & Delivery Governance',
+      value: 0.88,
+      level: 'Advanced',
+      text: 'Release governance and SDLC standards that made delivery predictable across the ecosystem; test automation scaled from 0% to 40% of the core regression suite.',
+    },
+    {
+      label: 'Data-Driven Management',
+      value: 0.85,
+      level: 'Advanced',
+      text: '10+ quality and efficiency metrics wired into Tableau and Jira; KPI and OKR frameworks linking engineering work to business goals.',
+    },
+    {
+      label: 'Technical Strategy & Budget Ownership',
+      value: 0.8,
+      level: 'Advanced',
+      text: 'Owned a 2-year engineering quality strategy end to end — the roadmap, the hiring plans and the budget behind them.',
+    },
+    {
+      label: 'Quality Engineering & Standards',
+      value: 1,
+      level: 'Expert',
+      text: 'Built a Quality Center of Excellence from scratch: company-wide Quality Gates and Zero Bug Policy that cut critical production incidents by 50%+.',
+    },
+  ];
+
+  const MATURITY_RINGS = [
+    { value: 0.25, label: 'Familiar' },
+    { value: 0.5, label: 'Proficient' },
+    { value: 0.75, label: 'Advanced' },
+    { value: 1, label: 'Expert' },
+  ];
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const CX = 200;
+  const CY = 200;
+  const RADIUS = 128;
+  const LABEL_RADIUS = 146;
+  const detailTitle = document.querySelector('[data-competency-title]');
+  const detailText = document.querySelector('[data-competency-text]');
+
+  const angleOf = (index) => (Math.PI / 180) * (-90 + index * (360 / COMPETENCIES.length));
+  const pointAt = (index, radius) => [CX + radius * Math.cos(angleOf(index)), CY + radius * Math.sin(angleOf(index))];
+
+  const el = (name, attrs) => {
+    const node = document.createElementNS(NS, name);
+    Object.entries(attrs).forEach(([key, val]) => node.setAttribute(key, val));
+    return node;
+  };
+
+  // labelled maturity rings + axes
+  MATURITY_RINGS.forEach((ring) => {
+    const points = COMPETENCIES.map((_, i) => pointAt(i, RADIUS * ring.value).join(',')).join(' ');
+    radarSvg.appendChild(el('polygon', { points, class: 'radar-grid' }));
+
+    const ringLabel = el('text', {
+      x: CX + 6, y: CY - RADIUS * ring.value + 11, 'text-anchor': 'start', class: 'radar-ring-label',
+    });
+    ringLabel.textContent = ring.label;
+    radarSvg.appendChild(ringLabel);
+  });
+  COMPETENCIES.forEach((_, i) => {
+    const [x, y] = pointAt(i, RADIUS);
+    radarSvg.appendChild(el('line', { x1: CX, y1: CY, x2: x, y2: y, class: 'radar-axis' }));
+  });
+
+  // value shape
+  const shapePoints = COMPETENCIES.map((c, i) => pointAt(i, RADIUS * c.value).join(',')).join(' ');
+  radarSvg.appendChild(el('polygon', { points: shapePoints, class: 'radar-shape' }));
+
+  const dots = [];
+  const labels = [];
+
+  const detailLevel = document.querySelector('[data-competency-level]');
+
+  const select = (index) => {
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    labels.forEach((label, i) => label.classList.toggle('active', i === index));
+    if (detailTitle) detailTitle.textContent = COMPETENCIES[index].label;
+    if (detailText) detailText.textContent = COMPETENCIES[index].text;
+    if (detailLevel) {
+      detailLevel.textContent = COMPETENCIES[index].level;
+      detailLevel.dataset.level = COMPETENCIES[index].level.toLowerCase();
+    }
+  };
+
+  COMPETENCIES.forEach((c, i) => {
+    const [x, y] = pointAt(i, RADIUS * c.value);
+
+    // generous invisible tap target behind the visible dot (mobile)
+    const hit = el('circle', { cx: x, cy: y, r: 22, fill: 'transparent' });
+    hit.style.cursor = 'pointer';
+    hit.addEventListener('mouseenter', () => select(i));
+    hit.addEventListener('click', () => select(i));
+    radarSvg.appendChild(hit);
+
+    const dot = el('circle', {
+      cx: x, cy: y, r: 6, class: 'radar-dot', tabindex: '0', role: 'button',
+      'aria-label': c.label,
+    });
+    dot.addEventListener('mouseenter', () => select(i));
+    dot.addEventListener('focus', () => select(i));
+    dot.addEventListener('click', () => select(i));
+    radarSvg.appendChild(dot);
+    dots.push(dot);
+
+    const [lx, ly] = pointAt(i, LABEL_RADIUS);
+    const anchor = Math.abs(lx - CX) < 10 ? 'middle' : lx > CX ? 'start' : 'end';
+    const label = el('text', { x: lx, y: ly, 'text-anchor': anchor, class: 'radar-label' });
+    const words = c.label.split(' ');
+    const half = Math.ceil(words.length / 2);
+    const lines = words.length > 2 ? [words.slice(0, half).join(' '), words.slice(half).join(' ')] : [c.label];
+    lines.forEach((line, lineIndex) => {
+      const tspan = el('tspan', { x: lx, dy: lineIndex === 0 ? (lines.length > 1 ? '-0.2em' : '0.35em') : '1.2em' });
+      tspan.textContent = line;
+      label.appendChild(tspan);
+    });
+    label.addEventListener('mouseenter', () => select(i));
+    label.addEventListener('click', () => select(i));
+    radarSvg.appendChild(label);
+    labels.push(label);
+  });
+
+  select(0);
 }
 
+// live local time (Baku, GMT+4) in the sidebar
+const localTime = document.querySelector('[data-local-time]');
 
-
-// page navigation variables
-const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
-
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
-
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
-
+if (localTime) {
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Baku',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
   });
+  const tick = () => { localTime.textContent = formatter.format(new Date()); };
+  tick();
+  setInterval(tick, 1000);
 }
