@@ -355,3 +355,90 @@ if (localTime) {
   runClock();
   document.addEventListener('visibilitychange', runClock);
 }
+
+/* ---------------------------------------------------------------
+   Analytics: custom events for GA4 (+ Clarity tags when available)
+   Tracks what people actually do: tab depth, contact intent, project
+   interest, blog clicks, competency exploration, scroll depth.
+--------------------------------------------------------------- */
+
+const track = (name, params = {}) => {
+  if (typeof window.gtag === 'function') window.gtag('event', name, params);
+  if (typeof window.clarity === 'function') {
+    try { window.clarity('set', name, String(params.label ?? params.item ?? 'true')); } catch (e) { /* noop */ }
+  }
+};
+
+// which tab, and how long people stay on it
+let tabEnteredAt = Date.now();
+let activeTab = (window.location.hash.slice(1) || 'about');
+
+const trackTabExit = () => {
+  const seconds = Math.round((Date.now() - tabEnteredAt) / 1000);
+  if (seconds > 1) track('tab_time', { label: activeTab, seconds });
+};
+
+document.querySelectorAll('[data-nav-link]').forEach((link) => {
+  link.addEventListener('click', () => {
+    trackTabExit();
+    activeTab = link.dataset.navLink;
+    tabEnteredAt = Date.now();
+    track('tab_view', { label: activeTab });
+  });
+});
+
+// contact intent — the conversion signals
+document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"], a[href*="wa.me"], a[href*="t.me"], a[href*="linkedin.com"], a[href*="instagram.com"]')
+  .forEach((link) => {
+    link.addEventListener('click', () => {
+      const href = link.getAttribute('href') ?? '';
+      const channel = href.startsWith('mailto:') ? 'email'
+        : href.startsWith('tel:') ? 'phone'
+        : href.includes('wa.me') ? 'whatsapp'
+        : href.includes('t.me') ? 'telegram'
+        : href.includes('linkedin') ? 'linkedin'
+        : 'instagram';
+      track('contact_click', { label: channel, location: activeTab });
+    });
+  });
+
+// CV download
+document.querySelector('a[href$=".pdf"]')?.addEventListener('click', () => track('cv_download', { label: 'pdf' }));
+
+// which companies people open
+document.querySelectorAll('[data-testimonials-item]').forEach((item) => {
+  const company = item.querySelector('[data-testimonials-title]')?.textContent.trim() ?? 'unknown';
+  item.addEventListener('click', () => track('project_open', { label: company }));
+});
+
+// which articles get clicked
+document.querySelectorAll('.blog-post-item > a').forEach((link) => {
+  const title = link.querySelector('.blog-item-title')?.textContent.trim().slice(0, 90) ?? 'unknown';
+  link.addEventListener('click', () => track('article_click', { label: title }));
+});
+
+// competency exploration (manual only — autoplay is not a user signal)
+document.querySelectorAll('.radar-dot').forEach((dot) => {
+  dot.addEventListener('click', () => track('competency_click', { label: dot.getAttribute('aria-label') ?? '' }));
+});
+
+// form funnel
+document.querySelector('[data-form]')?.addEventListener('submit', () => track('contact_form_submit', { label: 'form' }));
+document.querySelector('[data-form-input]')?.addEventListener('focus', () => track('contact_form_start', { label: 'form' }), { once: true });
+
+// scroll depth per page
+const depthsSeen = new Set();
+window.addEventListener('scroll', () => {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  if (scrollable < 200) return;
+  const pct = Math.round((window.scrollY / scrollable) * 100);
+  [25, 50, 75, 100].forEach((step) => {
+    const key = `${activeTab}:${step}`;
+    if (pct >= step && !depthsSeen.has(key)) {
+      depthsSeen.add(key);
+      track('scroll_depth', { label: activeTab, percent: step });
+    }
+  });
+}, { passive: true });
+
+window.addEventListener('pagehide', trackTabExit);
