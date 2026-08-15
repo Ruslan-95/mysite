@@ -184,14 +184,25 @@ if (radarSvg) {
     ringLabel.textContent = ring.label;
     radarSvg.appendChild(ringLabel);
   });
-  COMPETENCIES.forEach((_, i) => {
+  const axes = COMPETENCIES.map((_, i) => {
     const [x, y] = pointAt(i, RADIUS);
-    radarSvg.appendChild(el('line', { x1: CX, y1: CY, x2: x, y2: y, class: 'radar-axis', 'aria-hidden': 'true' }));
+    const line = el('line', { x1: CX, y1: CY, x2: x, y2: y, class: 'radar-axis', 'aria-hidden': 'true' });
+    radarSvg.appendChild(line);
+    return line;
   });
 
   // value shape
   const shapePoints = COMPETENCIES.map((c, i) => pointAt(i, RADIUS * c.value).join(',')).join(' ');
   radarSvg.appendChild(el('polygon', { points: shapePoints, class: 'radar-shape', 'aria-hidden': 'true' }));
+
+  // countdown ring around the active dot — shows when the next switch happens
+  const RING_R = 13;
+  const RING_CIRC = 2 * Math.PI * RING_R;
+  const progressRing = el('circle', {
+    cx: CX, cy: CY, r: RING_R, class: 'radar-progress', 'aria-hidden': 'true',
+    'stroke-dasharray': RING_CIRC.toFixed(2), 'stroke-dashoffset': RING_CIRC.toFixed(2),
+  });
+  radarSvg.appendChild(progressRing);
 
   const dots = [];
   const labels = [];
@@ -199,6 +210,7 @@ if (radarSvg) {
   const detailLevel = document.querySelector('[data-competency-level]');
 
   let current = 0;
+  let paused = false;
 
   const select = (index) => {
     current = index;
@@ -210,6 +222,16 @@ if (radarSvg) {
       detailLevel.textContent = COMPETENCIES[index].level;
       detailLevel.dataset.level = COMPETENCIES[index].level.toLowerCase();
     }
+
+    axes.forEach((axis, i) => axis.classList.toggle('active', i === index));
+
+    // move the countdown ring onto the active dot and restart its fill
+    const [rx, ry] = pointAt(index, RADIUS * COMPETENCIES[index].value);
+    progressRing.setAttribute('cx', rx);
+    progressRing.setAttribute('cy', ry);
+    progressRing.classList.remove('is-counting');
+    void progressRing.getBoundingClientRect();
+    if (!paused) progressRing.classList.add('is-counting');
 
     // restart the swap animation so each change reads as a deliberate transition
     const panel = document.querySelector('[data-competency-detail]');
@@ -262,18 +284,22 @@ if (radarSvg) {
   const chart = radarSvg.closest('[data-competency-chart]') ?? radarSvg.parentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let cycleTimer = null;
-  let paused = false;
 
   const stopCycle = () => {
     if (cycleTimer) {
       clearInterval(cycleTimer);
       cycleTimer = null;
     }
+    progressRing.style.animationPlayState = 'paused';
   };
 
   const startCycle = () => {
     stopCycle();
     if (paused || reduceMotion.matches) return;
+    progressRing.style.animationPlayState = 'running';
+    progressRing.classList.remove('is-counting');
+    void progressRing.getBoundingClientRect();
+    progressRing.classList.add('is-counting');
     cycleTimer = setInterval(() => {
       select((current + 1) % COMPETENCIES.length);
     }, CYCLE_MS);
@@ -284,6 +310,7 @@ if (radarSvg) {
     paused = true;
     stopCycle();
   };
+
 
   const resume = () => {
     paused = false;

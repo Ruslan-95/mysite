@@ -408,6 +408,11 @@
     background: var(--bg-gradient-onyx);
     border-radius: 20px;
   }
+
+  .avatar-box img {
+    height: auto;
+    border-radius: inherit;
+  }
   
   .info-content .name {
     color: var(--white-2);
@@ -1115,13 +1120,44 @@
     pointer-events: none;
   }
 
-  .radar-axis { stroke: var(--jet); stroke-width: 1; }
+  .radar-axis {
+    stroke: var(--jet);
+    stroke-width: 1;
+    transition: stroke 0.7s ease, stroke-width 0.7s ease;
+  }
+
+  .radar-axis.active {
+    stroke: hsla(45, 100%, 72%, 0.45);
+    stroke-width: 1.5;
+  }
+
+  .radar-progress {
+    fill: none;
+    stroke: var(--orange-yellow-crayola);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    opacity: 0.6;
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: rotate(-90deg);
+    transition: cx 0.75s cubic-bezier(0.4, 0, 0.2, 1), cy 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .radar-progress.is-counting {
+    animation: radar-countdown 5.2s linear forwards;
+  }
+
+  @keyframes radar-countdown {
+    from { stroke-dashoffset: 81.68; opacity: 0.65; }
+    to { stroke-dashoffset: 0; opacity: 0.3; }
+  }
 
   .radar-shape {
     fill: hsla(45, 100%, 72%, 0.14);
     stroke: var(--orange-yellow-crayola);
     stroke-width: 2;
     stroke-linejoin: round;
+    transition: fill 0.7s ease;
   }
 
   .radar-dot {
@@ -1129,18 +1165,17 @@
     stroke: var(--orange-yellow-crayola);
     stroke-width: 2;
     cursor: pointer;
-    transition: fill 0.45s ease, r 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition: fill 0.7s ease, r 0.7s cubic-bezier(0.34, 1.4, 0.64, 1), stroke-width 0.7s ease;
   }
 
   .radar-dot:hover,
   .radar-dot.active {
     fill: var(--orange-yellow-crayola);
-    r: 7.5;
+    r: 7;
+    stroke-width: 2.5;
   }
 
-  .radar-label {
-    transition: fill 0.45s ease;
-  }
+  .radar-label { transition: fill 0.7s ease; }
 
   @keyframes competency-swap {
     from { opacity: 0; transform: translateY(6px); }
@@ -1148,8 +1183,10 @@
   }
 
   .competency-detail.is-swapping > * {
-    animation: competency-swap 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation: competency-swap 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
   }
+
+  .competency-detail.is-swapping > *:nth-child(2) { animation-delay: 0.07s; }
 
   .radar-dot:focus-visible {
     fill: var(--orange-yellow-crayola);
