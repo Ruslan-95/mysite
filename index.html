@@ -18,15 +18,19 @@
   <meta property="og:url" content="https://ruslan-muradov.tech/">
   <meta property="og:description"
     content="Head of Software Engineering at Bir ecosystem (Kapital Bank's digital business, Baku): a 100+ person engineering org. Ex-QA Director, ex-Sber, ex-Yandex, ex-VK.">
-  <meta property="og:image" content="https://ruslan-muradov.tech/assets/images/og-cover.png">
+  <meta property="og:image" content="https://ruslan-muradov.tech/assets/images/og-cover.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ruslan Muradov — Head of Software Engineering at Bir ecosystem">
+  <meta property="og:site_name" content="ruslan-muradov.tech">
+  <meta property="og:locale" content="en_US">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ruslan Muradov — Engineering Leader · Head of Software Engineering">
   <meta name="twitter:description"
     content="Head of Software Engineering at Bir ecosystem (Kapital Bank's digital business, Baku): a 100+ person engineering org. Ex-QA Director, ex-Sber, ex-Yandex, ex-VK.">
-  <meta name="twitter:image" content="https://ruslan-muradov.tech/assets/images/og-cover.png">
+  <meta name="twitter:image" content="https://ruslan-muradov.tech/assets/images/og-cover.jpg">
+  <meta name="twitter:image:alt" content="Ruslan Muradov — Head of Software Engineering at Bir ecosystem">
 
   <script type="application/ld+json">
   {
@@ -44,8 +48,20 @@
       "description": "Engineering leader and QA expert with 10+ years in software: Head of Software Engineering at Bir ecosystem (Kapital Bank's digital business), ex-Director of QA CoE, ex-Head of QA. Engineering management, QA leadership, quality engineering and org design at 100+ person scale.",
       "worksFor": {
         "@type": "Organization",
-        "name": "Bir ecosystem"
+        "name": "Bir ecosystem",
+        "url": "https://bir.az",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Kapital Bank",
+          "url": "https://www.kapitalbank.az"
+        }
       },
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Synergy University"
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Baku",
@@ -64,6 +80,20 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Video interview on a QA career — Hexlet.io",
+    "description": "A long-form interview for the Hexlet.io channel where Ruslan Muradov talks through his career in QA, how modern testing practice works and which skills move a QA engineer forward.",
+    "inLanguage": "ru",
+    "duration": "PT1H10M20S",
+    "embedUrl": "https://www.youtube.com/embed/6y5FTMLGxEg",
+    "thumbnailUrl": "https://i.ytimg.com/vi/6y5FTMLGxEg/hqdefault.jpg",
+    "uploadDate": "2024-02-08"
+  }
+  </script>
+
   <!--
     - favicon
   -->
@@ -74,14 +104,13 @@
   <!--
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css?v=18">
+  <link rel="stylesheet" href="./assets/css/style.css?v=22">
 
   <!--
     - google font link
   -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="./assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 
 <body>
@@ -101,7 +130,7 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Ruslan Muradov" width="80">
+          <img src="./assets/images/my-avatar.png" alt="Ruslan Muradov" width="80" height="78">
         </figure>
 
         <div class="info-content">
@@ -113,15 +142,15 @@
           </div>
         </div>
 
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
+        <button class="info_more-btn" data-sidebar-btn aria-expanded="false" aria-controls="sidebar-more">
+          <span>Show contacts</span>
 
-          <ion-icon name="chevron-down"></ion-icon>
+          <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/></svg>
         </button>
 
       </div>
 
-      <div class="sidebar-info_more">
+      <div class="sidebar-info_more" id="sidebar-more">
 
         <div class="separator"></div>
 
@@ -130,7 +159,7 @@
           <li class="contact-item">
 
             <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="48" y="96" width="416" height="320" rx="40" ry="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M112 160l144 112 144-112"/></svg>
             </div>
 
             <div class="contact-info">
@@ -144,7 +173,7 @@
           <li class="contact-item">
 
             <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="128" y="16" width="256" height="480" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M176 16h24a8 8 0 018 8h0a16 16 0 0016 16h64a16 16 0 0016-16h0a8 8 0 018-8h24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
             </div>
 
             <div class="contact-info">
@@ -158,7 +187,7 @@
           <li class="contact-item">
 
             <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0025.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="256" cy="192" r="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
             </div>
 
             <div class="contact-info">
@@ -172,7 +201,7 @@
           <li class="contact-item">
 
             <div class="icon-box">
-              <ion-icon name="time-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 64C150 64 64 150 64 256s86 192 192 192 192-86 192-192S362 64 256 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 128v144h96"/></svg>
             </div>
 
             <div class="contact-info">
@@ -191,13 +220,13 @@
 
           <li class="social-item">
             <a href="https://www.linkedin.com/in/ruslan-m/" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <ion-icon name="logo-linkedin"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M444.17 32H70.28C49.85 32 32 46.7 32 66.89v374.72C32 461.91 49.85 480 70.28 480h373.78c20.54 0 35.94-18.21 35.94-38.39V66.89C480.12 46.7 464.6 32 444.17 32zm-273.3 373.43h-64.18V205.88h64.18zM141 175.54h-.46c-20.54 0-33.84-15.29-33.84-34.43 0-19.49 13.65-34.42 34.65-34.42s33.85 14.82 34.31 34.42c-.01 19.14-13.31 34.43-34.66 34.43zm264.43 229.89h-64.18V296.32c0-26.14-9.34-44-32.56-44-17.74 0-28.24 12-32.91 23.69-1.75 4.2-2.22 9.92-2.22 15.76v113.66h-64.18V205.88h64.18v27.77c9.34-13.3 23.93-32.44 57.88-32.44 42.13 0 74 27.77 74 87.64z"/></svg>
             </a>
           </li>
 
           <li class="social-item">
             <a href="https://wa.me/994102521295" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
-              <ion-icon name="logo-whatsapp"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M414.73 97.1A222.14 222.14 0 00256.94 32C134 32 33.92 131.58 33.87 254a220.61 220.61 0 0029.78 111L32 480l118.25-30.87a223.63 223.63 0 00106.6 27h.09c122.93 0 223-99.59 223.06-222A220.18 220.18 0 00414.73 97.1zM256.94 438.66h-.08a185.75 185.75 0 01-94.36-25.72l-6.77-4-70.17 18.32 18.73-68.09-4.41-7A183.46 183.46 0 0171.53 254c0-101.73 83.21-184.5 185.48-184.5a185 185 0 01185.33 184.64c-.04 101.74-83.21 184.52-185.4 184.52zm101.69-138.19c-5.57-2.78-33-16.2-38.08-18.05s-8.83-2.78-12.54 2.78-14.4 18-17.65 21.75-6.5 4.16-12.07 1.38-23.54-8.63-44.83-27.53c-16.57-14.71-27.75-32.87-31-38.42s-.35-8.56 2.44-11.32c2.51-2.49 5.57-6.48 8.36-9.72s3.72-5.56 5.57-9.26.93-6.94-.46-9.71-12.54-30.08-17.18-41.19c-4.53-10.82-9.12-9.35-12.54-9.52-3.25-.16-7-.2-10.69-.2a20.53 20.53 0 00-14.86 6.94c-5.11 5.56-19.51 19-19.51 46.28s20 53.68 22.76 57.38 39.3 59.73 95.21 83.76a323.11 323.11 0 0031.78 11.68c13.35 4.22 25.5 3.63 35.1 2.2 10.71-1.59 33-13.42 37.63-26.38s4.64-24.06 3.25-26.37-5.11-3.71-10.69-6.48z" fill-rule="evenodd"/></svg>
             </a>
           </li>
 
@@ -213,7 +242,7 @@
 
           <li class="social-item">
             <a href="https://www.instagram.com/un.rus/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
-              <ion-icon name="logo-instagram"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M349.33 69.33a93.62 93.62 0 0193.34 93.34v186.66a93.62 93.62 0 01-93.34 93.34H162.67a93.62 93.62 0 01-93.34-93.34V162.67a93.62 93.62 0 0193.34-93.34h186.66m0-37.33H162.67C90.8 32 32 90.8 32 162.67v186.66C32 421.2 90.8 480 162.67 480h186.66C421.2 480 480 421.2 480 349.33V162.67C480 90.8 421.2 32 349.33 32z"/><path d="M377.33 162.67a28 28 0 1128-28 27.94 27.94 0 01-28 28zM256 181.33A74.67 74.67 0 11181.33 256 74.75 74.75 0 01256 181.33m0-37.33a112 112 0 10112 112 112 112 0 00-112-112z"/></svg>
             </a>
           </li>
 
@@ -297,10 +326,10 @@
           <h3 class="h3 skills-title">Core Competencies</h3>
 
           <div class="competency-chart content-card" style="cursor: default;" data-competency-chart>
-            <svg id="competency-radar" viewBox="-60 -12 520 424" role="img"
+            <svg id="competency-radar" viewBox="-60 -12 520 424" role="group"
               aria-label="Radar chart of core competencies with maturity levels from Familiar to Expert: people leadership, organisational design, quality engineering, delivery governance, data-driven management, technical strategy, performance engineering"></svg>
 
-            <div class="competency-detail" data-competency-detail aria-live="polite">
+            <div class="competency-detail" data-competency-detail aria-live="polite" aria-atomic="true">
               <div class="competency-detail-head">
                 <h4 data-competency-title>People Leadership & Talent Growth</h4>
                 <span class="competency-level" data-competency-level data-level="expert">Expert</span>
@@ -325,7 +354,7 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <ion-icon name="git-network-outline" aria-hidden="true"></ion-icon>
+                <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><circle cx="128" cy="96" r="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="256" cy="416" r="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 256v112"/><circle cx="384" cy="96" r="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M128 144c0 74.67 68.92 112 128 112M384 144c0 74.67-68.92 112-128 112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
               </div>
 
               <div class="service-content-box">
@@ -343,7 +372,7 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon>
+                <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M336 176L225.2 304 176 255.8"/><path d="M463.1 112.37C373.68 96.33 336.71 84.45 256 48c-80.71 36.45-117.68 48.33-207.1 64.37C32.7 369.13 240.58 457.79 256 464c15.42-6.21 223.3-94.87 207.1-351.63z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
               </div>
 
               <div class="service-content-box">
@@ -361,7 +390,7 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <ion-icon name="hammer-outline" aria-hidden="true"></ion-icon>
+                <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M277.42 247a24.68 24.68 0 00-4.08-5.47L255 223.44a21.63 21.63 0 00-6.56-4.57 20.93 20.93 0 00-23.28 4.27c-6.36 6.26-18 17.68-39 38.43C146 301.3 71.43 367.89 37.71 396.29a16 16 0 00-1.09 23.54l39 39.43a16.13 16.13 0 0023.67-.89c29.24-34.37 96.3-109 136-148.23 20.39-20.06 31.82-31.58 38.29-37.94a21.76 21.76 0 003.84-25.2zM478.43 201l-34.31-34a5.44 5.44 0 00-4-1.59 5.59 5.59 0 00-4 1.59h0a11.41 11.41 0 01-9.55 3.27c-4.48-.49-9.25-1.88-12.33-4.86-7-6.86 1.09-20.36-5.07-29a242.88 242.88 0 00-23.08-26.72c-7.06-7-34.81-33.47-81.55-52.53a123.79 123.79 0 00-47-9.24c-26.35 0-46.61 11.76-54 18.51-5.88 5.32-12 13.77-12 13.77a91.29 91.29 0 0110.81-3.2 79.53 79.53 0 0123.28-1.49C241.19 76.8 259.94 84.1 270 92c16.21 13 23.18 30.39 24.27 52.83.8 16.69-15.23 37.76-30.44 54.94a7.85 7.85 0 00.4 10.83l21.24 21.23a8 8 0 0011.14.1c13.93-13.51 31.09-28.47 40.82-34.46s17.58-7.68 21.35-8.09a35.71 35.71 0 0121.3 4.62 13.65 13.65 0 013.08 2.38c6.46 6.56 6.07 17.28-.5 23.74l-2 1.89a5.5 5.5 0 000 7.84l34.31 34a5.5 5.5 0 004 1.58 5.65 5.65 0 004-1.58L478.43 209a5.82 5.82 0 000-8z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
               </div>
 
               <div class="service-content-box">
@@ -379,7 +408,7 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <ion-icon name="analytics-outline" aria-hidden="true"></ion-icon>
+                <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M344 280l88-88M232 216l64 64M80 320l104-104"/><circle cx="456" cy="168" r="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="320" cy="304" r="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="208" cy="192" r="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="56" cy="344" r="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
               </div>
 
               <div class="service-content-box">
@@ -397,7 +426,7 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <ion-icon name="clipboard-outline" aria-hidden="true"></ion-icon>
+                <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M336 64h32a48 48 0 0148 48v320a48 48 0 01-48 48H144a48 48 0 01-48-48V112a48 48 0 0148-48h32" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><rect x="176" y="32" width="160" height="64" rx="26.13" ry="26.13" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/></svg>
               </div>
 
               <div class="service-content-box">
@@ -415,7 +444,7 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M32 192L256 64l224 128-224 128L32 192z"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M112 240v128l144 80 144-80V240M480 368V192M256 320v128"/></svg>
               </div>
 
               <div class="service-content-box">
@@ -440,15 +469,15 @@
 
         <section class="testimonials">
 
-          <h3 class="h3 testimonials-title">Projects</h3>
+          <h3 class="h3 testimonials-title">Career highlights</h3>
 
           <ul class="testimonials-list has-scrollbar">
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/bir-ecosystem.svg" alt="Bir ecosystem" width="60" data-testimonials-avatar>
+                  <img src="./assets/images/bir-ecosystem.svg" alt="Bir ecosystem" width="60" height="60" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Bir ecosystem</h4>
@@ -490,7 +519,7 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
                   <img class="sDevives-img" src="./assets/images/sDevives.png" alt="sDevives" width="40"
@@ -511,7 +540,7 @@
 
                   <p><b class="stack">Activities:</b></p>
                   <ul>
-                    <li class="timeline-text">Managed 20+ engineers across multiple cross-functional QA squads.</li>
+                    <li class="timeline-text">Led QA across multiple cross-functional squads in the Sber ecosystem.</li>
                     <li class="timeline-text">Reduced the Zero Bug Policy backlog by 86% — historically the best result for the company's highest-load team.</li>
                     <li class="timeline-text">Grew automation engineering headcount 1.5x (6 to 9 engineers) with no regression in time-to-market or quality.</li>
                     <li class="timeline-text">Built the testing process from scratch in one of the teams and introduced shift-left testing.</li>
@@ -523,10 +552,10 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/robo.png" alt="RoboCash" width="60" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/robo.png" alt="RoboCash" width="60" height="36" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>RoboFinance</h4>
@@ -559,10 +588,10 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/sb.png" alt="SkillBox" width="60" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/sb.png" alt="SkillBox" width="60" height="36" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Skillbox</h4>
@@ -591,10 +620,10 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/hedera.png" alt="hedera" width="60" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/hedera.png" alt="hedera" width="60" height="36" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Hedera</h4>
@@ -627,10 +656,10 @@
 
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/mail.png" alt="MailRu" width="60" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/mail.png" alt="MailRu" width="60" height="36" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>VK (Mail.ru Group)</h4>
@@ -648,7 +677,7 @@
                   <p><b class="stack">Activities:</b></p>
                   <ul>
                     <li class="timeline-text">Achieved 60% API coverage with a Kotlin automation framework built from scratch.</li>
-                    <li class="timeline-text">Increased platform service throughput by 35% through targeted load testing.</li>
+                    <li class="timeline-text">Load testing surfaced the bottlenecks whose fixes increased platform service throughput by 35%.</li>
                     <li class="timeline-text">Embedded QA into the Scrum delivery process.</li>
                     <li class="timeline-text">Built the QA team from scratch, coaching hires from junior to mid level.</li>
                     <li class="timeline-text">Spoke at internal engineering conferences; reviewed autotests and mentored engineers.</li>
@@ -662,10 +691,10 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/y.png" alt="Yandex" width="60" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/y.png" alt="Yandex" width="60" height="36" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Yandex</h4>
@@ -697,10 +726,10 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/bork.png" alt="bork" width="50" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/bork.png" alt="bork" width="50" height="30" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>BORK</h4>
@@ -730,10 +759,10 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/dyson.png" alt="Dyson" width="60" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/dyson.png" alt="Dyson" width="60" height="36" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Dyson</h4>
@@ -765,10 +794,10 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/tp.png" alt="tp" width="60" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/tp.png" alt="tp" width="60" height="36" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>TechnoPark</h4>
@@ -796,10 +825,10 @@
             </li>
 
             <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item tabindex="0" role="button">
+              <div class="content-card" data-testimonials-item tabindex="0" role="button" aria-haspopup="dialog">
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/sber.png" alt="sber" width="60" loading="lazy" decoding="async" data-testimonials-avatar>
+                  <img src="./assets/images/sber.png" alt="sber" width="60" height="36" loading="lazy" decoding="async" data-testimonials-avatar>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Technoserv — SberTech</h4>
@@ -840,21 +869,21 @@
 
           <div class="overlay" data-overlay></div>
 
-          <section class="testimonials-modal" role="dialog" aria-modal="true">
+          <section class="testimonials-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
 
             <button class="modal-close-btn" data-modal-close-btn aria-label="Close">
-              <ion-icon name="close-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
             </button>
 
             <div class="modal-img-wrapper">
               <figure class="modal-avatar-box">
-                <img src="./assets/images/my-avatar.png" alt="" width="80" data-modal-img>
+                <img src="./assets/images/my-avatar.png" alt="" width="80" height="78" data-modal-img>
               </figure>
             </div>
 
             <div class="modal-content">
 
-              <h4 class="h3 modal-title" data-modal-title></h4>
+              <h4 class="h3 modal-title" id="project-modal-title" data-modal-title></h4>
 
               <div data-modal-text></div>
 
@@ -888,10 +917,14 @@
         </header>
 
 
-        <section class="cv-linkedin">
+        <section class="cv-linkedin cv-actions">
           <a class="linkedin-btn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/ruslan-m/">
-            <ion-icon name="logo-linkedin" aria-hidden="true"></ion-icon>
+            <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M444.17 32H70.28C49.85 32 32 46.7 32 66.89v374.72C32 461.91 49.85 480 70.28 480h373.78c20.54 0 35.94-18.21 35.94-38.39V66.89C480.12 46.7 464.6 32 444.17 32zm-273.3 373.43h-64.18V205.88h64.18zM141 175.54h-.46c-20.54 0-33.84-15.29-33.84-34.43 0-19.49 13.65-34.42 34.65-34.42s33.85 14.82 34.31 34.42c-.01 19.14-13.31 34.43-34.66 34.43zm264.43 229.89h-64.18V296.32c0-26.14-9.34-44-32.56-44-17.74 0-28.24 12-32.91 23.69-1.75 4.2-2.22 9.92-2.22 15.76v113.66h-64.18V205.88h64.18v27.77c9.34-13.3 23.93-32.44 57.88-32.44 42.13 0 74 27.77 74 87.64z"/></svg>
             <span>View LinkedIn Profile</span>
+          </a>
+          <a class="linkedin-btn" href="./assets/Ruslan-Muradov-CV.pdf" download>
+            <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 221.25V416a48 48 0 01-48 48H144a48 48 0 01-48-48V96a48 48 0 0148-48h98.75a32 32 0 0122.62 9.37l141.26 141.26a32 32 0 019.37 22.62z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path d="M256 56v120a32 32 0 0032 32h120M176 288h160M176 368h160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+            <span>Download CV (PDF)</span>
           </a>
         </section>
 
@@ -900,7 +933,7 @@
 
           <div class="title-wrapper">
             <div class="icon-box">
-              <ion-icon name="briefcase-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="32" y="128" width="448" height="320" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path d="M144 128V96a32 32 0 0132-32h160a32 32 0 0132 32v32M480 240H32M320 240v24a8 8 0 01-8 8H200a8 8 0 01-8-8v-24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
             </div>
 
             <h3 class="h3">Experience</h3>
@@ -979,7 +1012,7 @@
 
               <ul>
                 <li class="timeline-text">Achieved 60% API coverage with a Kotlin automation framework built from scratch.</li>
-                <li class="timeline-text">Increased platform service throughput by 35% through targeted load testing (Vegeta, GHZ).</li>
+                <li class="timeline-text">Load testing (Vegeta, GHZ) surfaced the bottlenecks whose fixes increased platform service throughput by 35%.</li>
                 <li class="timeline-text">Built the QA team from scratch: hired, onboarded and coached engineers from junior to mid level.</li>
                 <li class="timeline-text">Embedded Scrum-aligned QA processes into delivery cadences; spoke at internal engineering conferences.</li>
               </ul>
@@ -1036,7 +1069,7 @@
 
           <div class="title-wrapper">
             <div class="icon-box">
-              <ion-icon name="people-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M402 168c-2.93 40.67-33.1 72-66 72s-63.12-31.32-66-72c-3-42.31 26.37-72 66-72s69 30.46 66 72z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M336 304c-65.17 0-127.84 32.37-143.54 95.41-2.08 8.34 3.15 16.59 11.72 16.59h263.65c8.57 0 13.77-8.25 11.72-16.59C463.85 335.36 401.18 304 336 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path d="M200 185.94c-2.34 32.48-26.72 58.06-53 58.06s-50.7-25.57-53-58.06C91.61 152.15 115.34 128 147 128s55.39 24.77 53 57.94z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M206 306c-18.05-8.27-37.93-11.45-59-11.45-52 0-102.1 25.85-114.65 76.2-1.65 6.66 2.53 13.25 9.37 13.25H154" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/></svg>
             </div>
 
             <h3 class="h3">Advisory & Part-Time</h3>
@@ -1080,6 +1113,18 @@
 
             </li>
 
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Frontend Engineer — Dyson</h4>
+
+              <span>Part-time project</span>
+              <p class="timeline-text">
+                Responsive UI across Dyson's global storefronts, React and Vue component libraries,
+                web-vitals tuning and API integration work alongside the backend squads.
+              </p>
+
+            </li>
+
           </ol>
 
         </section>
@@ -1088,7 +1133,7 @@
 
           <div class="title-wrapper">
             <div class="icon-box">
-              <ion-icon name="school-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M32 192L256 64l224 128-224 128L32 192z"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M112 240v128l144 80 144-80V240M480 368V192M256 320v128"/></svg>
             </div>
 
             <h3 class="h3">Education</h3>
@@ -1120,7 +1165,7 @@
 
           <div class="title-wrapper">
             <div class="icon-box">
-              <ion-icon name="chatbubbles-outline"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M431 320.6c-1-3.6 1.2-8.6 3.3-12.2a33.68 33.68 0 012.1-3.1A162 162 0 00464 215c.3-92.2-77.5-167-173.7-167-83.9 0-153.9 57.1-170.3 132.9a160.7 160.7 0 00-3.7 34.2c0 92.3 74.8 169.1 171 169.1 15.3 0 35.9-4.6 47.2-7.7s22.5-7.2 25.4-8.3a26.44 26.44 0 019.3-1.7 26 26 0 0110.1 2l56.7 20.1a13.52 13.52 0 003.9 1 8 8 0 008-8 12.85 12.85 0 00-.5-2.7z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><path d="M66.46 232a146.23 146.23 0 006.39 152.67c2.31 3.49 3.61 6.19 3.21 8s-11.93 61.87-11.93 61.87a8 8 0 002.71 7.68A8.17 8.17 0 0072 464a7.26 7.26 0 002.91-.6l56.21-22a15.7 15.7 0 0112 .2c18.94 7.38 39.88 12 60.83 12A159.21 159.21 0 00284 432.11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/></svg>
             </div>
 
             <h3 class="h3">Languages</h3>
@@ -1154,7 +1199,7 @@
               <iframe
                 class="iframe-blog"
                 src="https://www.youtube.com/embed/6y5FTMLGxEg?si=dO-E30NPiEUyRLuK&amp;start=121"
-                title="Video interview with Ruslan Muradov about QA careers (Hexlet.io)" frameborder="0"
+                title="Video interview with Ruslan Muradov about QA careers (Hexlet.io)"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" loading="lazy">
               </iframe>
@@ -1168,6 +1213,10 @@
                 <span class="dot"></span>
 
                 <time datetime="PT1H10M20S">1:10:20</time>
+
+                <span class="dot"></span>
+
+                <p class="blog-category">in Russian</p>
               </div>
 
               <h3 class="h3 blog-item-title">Video interview on a QA career — Hexlet.io</h3>
@@ -1177,6 +1226,29 @@
 
           </div>
 
+          <h3 class="h3 article-title">Speaking &amp; media</h3>
+
+          <ul class="speaking-list">
+            <li class="speaking-item">
+              <span class="speaking-title">Zero Bug Policy in practice</span>
+              <span class="speaking-meta">Tech Guild Event · talk on making quality objective and transparent across projects</span>
+            </li>
+            <li class="speaking-item">
+              <span class="speaking-title">QA Tech Mastery — internal capability programme</span>
+              <span class="speaking-meta">Bir ecosystem · designed and led a hands-on programme; 40+ engineers trained and certified</span>
+            </li>
+            <li class="speaking-item">
+              <span class="speaking-title">Conference talks &amp; masterclasses</span>
+              <span class="speaking-meta">Skillbox · QA courses, masterclasses and the IT experts club (2022–2025)</span>
+            </li>
+            <li class="speaking-item">
+              <span class="speaking-title">Internal engineering conferences</span>
+              <span class="speaking-meta">VK · talks that grew the company-wide QA community</span>
+            </li>
+          </ul>
+
+          <h3 class="h3 article-title">Leadership &amp; engineering strategy</h3>
+
           <ul class="blog-posts-list">
 
             <li class="blog-post-item">
@@ -1184,7 +1256,7 @@
                 target="_blank" rel="noopener">
 
                 <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="hardware-chip-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="80" y="80" width="352" height="352" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><rect x="144" y="144" width="224" height="224" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 80V48M336 80V48M176 80V48M256 464v-32M336 464v-32M176 464v-32M432 256h32M432 336h32M432 176h32M48 256h32M48 336h32M48 176h32"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1195,6 +1267,9 @@
                     <span class="dot"></span>
                     <p class="blog-category">Metrics</p>
 
+                  
+                    <span class="dot"></span>
+                    <time datetime="2026-01-25">Jan 2026</time>
                   </div>
 
                   <h3 class="h3 blog-item-title">AI in Software Development: Where the Real Speedup Is, and Where It’s Self-Deception</h3>
@@ -1209,11 +1284,17 @@
               </a>
             </li>
 
+          </ul>
+
+          <h3 class="h3 article-title">Earlier technical writing</h3>
+
+          <ul class="blog-posts-list">
+
             <li class="blog-post-item">
               <a href="https://hackernoon.com/what-about-grpc-testing" target="_blank" rel="noopener">
 
                 <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="swap-horizontal-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M304 48l112 112-112 112M398.87 160H96M208 464L96 352l112-112M114 352h302"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1225,6 +1306,9 @@
                     <p class="blog-category">Load testing</p>
 
                     <!-- <time datetime="2022-02-23">Fab 23, 2022</time> -->
+                  
+                    <span class="dot"></span>
+                    <time datetime="2022-05-18">May 2022</time>
                   </div>
 
                   <h3 class="h3 blog-item-title">What About gRPC Testing?</h3>
@@ -1244,7 +1328,7 @@
                 target="_blank" rel="noopener">
 
                 <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="speedometer-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M326.1 231.9l-47.5 75.5a31 31 0 01-7 7 30.11 30.11 0 01-35-49l75.5-47.5a10.23 10.23 0 0111.7 0 10.06 10.06 0 012.3 14z"/><path d="M256 64C132.3 64 32 164.2 32 287.9a223.18 223.18 0 0056.3 148.5c1.1 1.2 2.1 2.4 3.2 3.5a25.19 25.19 0 0037.1-.1 173.13 173.13 0 01254.8 0 25.19 25.19 0 0037.1.1l3.2-3.5A223.18 223.18 0 00480 287.9C480 164.2 379.7 64 256 64z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M256 128v32M416 288h-32M128 288H96M165.49 197.49l-22.63-22.63M346.51 197.49l22.63-22.63"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1260,6 +1344,9 @@
                     <p class="blog-category">Monitoring</p>
 
                     <!-- <time datetime="2022-02-23">Fab 23, 2022</time> -->
+                  
+                    <span class="dot"></span>
+                    <time datetime="2022-04-19">Apr 2022</time>
                   </div>
 
                   <h3 class="h3 blog-item-title">How I Started Load Testing on a High-Load Service</h3>
@@ -1279,7 +1366,7 @@
               <a href="https://hackernoon.com/what-is-an-api-and-how-to-test-it" target="_blank" rel="noopener">
 
                 <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="code-slash-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M160 368L32 256l128-112M352 368l128-112-128-112M304 96l-96 320"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1291,6 +1378,9 @@
                     <p class="blog-category">API</p>
 
                     <!-- <time datetime="2022-02-23">Fab 23, 2022</time> -->
+                  
+                    <span class="dot"></span>
+                    <time datetime="2022-07-04">Jul 2022</time>
                   </div>
 
                   <h3 class="h3 blog-item-title">Understanding APIs and How to Test Them</h3>
@@ -1309,7 +1399,7 @@
               <a href="https://hackernoon.com/what-is-the-benefit-of-using-different-testing-levels" target="_blank" rel="noopener">
 
                 <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="layers-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M434.8 137.65l-149.36-68.1c-16.19-7.4-42.69-7.4-58.88 0L77.3 137.65c-17.6 8-17.6 21.09 0 29.09l148 67.5c16.89 7.7 44.69 7.7 61.58 0l148-67.5c17.52-8 17.52-21.1-.08-29.09zM160 308.52l-82.7 37.11c-17.6 8-17.6 21.1 0 29.1l148 67.5c16.89 7.69 44.69 7.69 61.58 0l148-67.5c17.6-8 17.6-21.1 0-29.1l-79.94-38.47" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M160 204.48l-82.8 37.16c-17.6 8-17.6 21.1 0 29.1l148 67.49c16.89 7.7 44.69 7.7 61.58 0l148-67.49c17.7-8 17.7-21.1.1-29.1L352 204.48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1318,6 +1408,9 @@
                     <p class="blog-category">QA</p>
 
                     <!-- <time datetime="2022-02-23">Fab 23, 2022</time> -->
+                  
+                    <span class="dot"></span>
+                    <time datetime="2022-07-07">Jul 2022</time>
                   </div>
 
                   <h3 class="h3 blog-item-title">What is the Benefit of Using Different Testing Levels?</h3>
@@ -1335,7 +1428,7 @@
               <a href="https://hackernoon.com/quality-assurance-in-scrum-projects" target="_blank" rel="noopener">
 
                 <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="sync-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M434.67 285.59v-29.8c0-98.73-80.24-178.79-179.2-178.79a179 179 0 00-140.14 67.36m-38.53 82v29.8C76.8 355 157 435 256 435a180.45 180.45 0 00140-66.92" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M32 256l44-44 46 44M480 256l-44 44-46-44"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1349,6 +1442,9 @@
 
 
                     <!-- <time datetime="2022-02-23">Fab 23, 2022</time> -->
+                  
+                    <span class="dot"></span>
+                    <time datetime="2022-07-09">Jul 2022</time>
                   </div>
 
                   <h3 class="h3 blog-item-title">Quality Assurance in Scrum Projects</h3>
@@ -1366,7 +1462,7 @@
               <a href="https://hackernoon.com/testing-has-a-type-smoke-sanity-regression-re-test" target="_blank" rel="noopener">
 
                 <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="flask-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M176 48h160M118 304h276M208 48v93.48a64.09 64.09 0 01-9.88 34.18L73.21 373.49C48.4 412.78 76.63 464 123.08 464h265.84c46.45 0 74.68-51.22 49.87-90.51L313.87 175.66a64.09 64.09 0 01-9.87-34.18V48"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1375,6 +1471,9 @@
                     <p class="blog-category">QA</p>
 
                     <!-- <time datetime="2022-02-23">Fab 23, 2022</time> -->
+                  
+                    <span class="dot"></span>
+                    <time datetime="2022-07-09">Jul 2022</time>
                   </div>
 
                   <h3 class="h3 blog-item-title">Testing Has a Type: Smoke, Sanity, Regression, Re-Test </h3>
@@ -1392,7 +1491,7 @@
               <a href="https://hackernoon.com/getting-started-with-test-automation-using-cypress" target="_blank" rel="noopener">
 
                 <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="construct-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M436.67 184.11a27.17 27.17 0 01-38.3 0l-22.48-22.49a27.15 27.15 0 010-38.29l50.89-50.89a.85.85 0 00-.26-1.38C393.68 57 351.09 64.15 324.05 91c-25.88 25.69-27.35 64.27-17.87 98a27 27 0 01-7.67 27.14l-173 160.76a40.76 40.76 0 1057.57 57.54l162.15-173.3a27 27 0 0126.77-7.7c33.46 8.94 71.49 7.26 97.07-17.94 27.49-27.08 33.42-74.94 20.1-102.33a.85.85 0 00-1.36-.22z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><path d="M224 284c-17.48-17-25.49-24.91-31-30.29a18.24 18.24 0 01-3.33-21.35 20.76 20.76 0 013.5-4.62l15.68-15.29a18.66 18.66 0 015.63-3.87 18.11 18.11 0 0120 3.62c5.45 5.29 15.43 15 33.41 32.52M317.07 291.3c40.95 38.1 90.62 83.27 110 99.41a13.46 13.46 0 01.94 19.92L394.63 444a14 14 0 01-20.29-.76c-16.53-19.18-61.09-67.11-99.27-107" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M17.34 193.5l29.41-28.74a4.71 4.71 0 013.41-1.35 4.85 4.85 0 013.41 1.35h0a9.86 9.86 0 008.19 2.77c3.83-.42 7.92-1.6 10.57-4.12 6-5.8-.94-17.23 4.34-24.54a207 207 0 0119.78-22.6c6-5.88 29.84-28.32 69.9-44.45A107.31 107.31 0 01206.67 64c22.59 0 40 10 46.26 15.67a89.54 89.54 0 0110.28 11.64 78.92 78.92 0 00-9.21-2.77 68.82 68.82 0 00-20-1.26c-13.33 1.09-29.41 7.26-38 14-13.9 11-19.87 25.72-20.81 44.71-.68 14.12 2.72 22.1 36.1 55.49a6.6 6.6 0 01-.34 9.16l-18.22 18a6.88 6.88 0 01-9.54.09c-21.94-21.94-36.65-33.09-45-38.16s-15.07-6.5-18.3-6.85a30.85 30.85 0 00-18.27 3.87 11.39 11.39 0 00-2.64 2 14.14 14.14 0 00.42 20.08l1.71 1.6a4.63 4.63 0 010 6.64L71.73 246.6a4.71 4.71 0 01-3.41 1.4 4.86 4.86 0 01-3.41-1.35l-47.57-46.43a4.88 4.88 0 010-6.72z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1405,6 +1504,9 @@
 
 
                     <!-- <time datetime="2022-02-23">Fab 23, 2022</time> -->
+                  
+                    <span class="dot"></span>
+                    <time datetime="2023-05-09">May 2023</time>
                   </div>
 
                   <h3 class="h3 blog-item-title">Getting Started with Test Automation Using Cypress </h3>
@@ -1425,9 +1527,7 @@
 
           <h3 class="h3 article-title">In Russian</h3>
 
-          <p lang="ru" style="margin: -18px 0 20px; font-size: 12px; color: hsla(0, 0%, 84%, 0.45); font-weight: 300;">
-            статьи Руслана Мурадова на русском языке
-          </p>
+          <p class="blog-byline" lang="ru">статьи Руслана Мурадова на русском языке</p>
             <ul class="blog-posts-list">
 
               <li class="blog-post-item" lang="ru">
@@ -1435,7 +1535,7 @@
                   target="_blank" rel="noopener">
 
                   <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="chatbubbles-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M431 320.6c-1-3.6 1.2-8.6 3.3-12.2a33.68 33.68 0 012.1-3.1A162 162 0 00464 215c.3-92.2-77.5-167-173.7-167-83.9 0-153.9 57.1-170.3 132.9a160.7 160.7 0 00-3.7 34.2c0 92.3 74.8 169.1 171 169.1 15.3 0 35.9-4.6 47.2-7.7s22.5-7.2 25.4-8.3a26.44 26.44 0 019.3-1.7 26 26 0 0110.1 2l56.7 20.1a13.52 13.52 0 003.9 1 8 8 0 008-8 12.85 12.85 0 00-.5-2.7z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><path d="M66.46 232a146.23 146.23 0 006.39 152.67c2.31 3.49 3.61 6.19 3.21 8s-11.93 61.87-11.93 61.87a8 8 0 002.71 7.68A8.17 8.17 0 0072 464a7.26 7.26 0 002.91-.6l56.21-22a15.7 15.7 0 0112 .2c18.94 7.38 39.88 12 60.83 12A159.21 159.21 0 00284 432.11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1449,7 +1549,7 @@
                       <!-- <time datetime="2022-02-23">Fab 23, 2022</time> -->
                     </div>
 
-                    <h3 class="h3 blog-item-title">6 главных ошибок IT-специалистов на собеседовании</h3>
+                    <h4 class="h3 blog-item-title">6 главных ошибок IT-специалистов на собеседовании</h4>
 
                     <p class="blog-text">
                       В этой статье расскажу подробнее о каждой из этих ошибок и дам советы, как их избежать...
@@ -1465,7 +1565,7 @@
                   target="_blank" rel="noopener">
 
                   <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="phone-portrait-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="128" y="16" width="256" height="480" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M176 16h24a8 8 0 018 8h0a16 16 0 0016 16h64a16 16 0 0016-16h0a8 8 0 018-8h24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1476,7 +1576,7 @@
 
                     </div>
 
-                    <h3 class="h3 blog-item-title">Тестирование мобильных приложений</h3>
+                    <h4 class="h3 blog-item-title">Тестирование мобильных приложений</h4>
 
                     <p class="blog-text">
                       разработка любого мало-мальски амбициозного мобильного приложения не обходится без тестирования. В
@@ -1493,7 +1593,7 @@
                   target="_blank" rel="noopener">
 
                   <div class="blog-icon-box" aria-hidden="true">
-                  <ion-icon name="build-outline"></ion-icon>
+                  <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M393.87 190a32.1 32.1 0 01-45.25 0l-26.57-26.57a32.09 32.09 0 010-45.26L382.19 58a1 1 0 00-.3-1.64c-38.82-16.64-89.15-8.16-121.11 23.57-30.58 30.35-32.32 76-21.12 115.84a31.93 31.93 0 01-9.06 32.08L64 380a48.17 48.17 0 1068 68l153.86-167a31.93 31.93 0 0131.6-9.13c39.54 10.59 84.54 8.6 114.72-21.19 32.49-32 39.5-88.56 23.75-120.93a1 1 0 00-1.6-.26z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><circle cx="96" cy="416" r="16"/></svg>
                 </div>
 
                 <div class="blog-content">
@@ -1504,7 +1604,7 @@
 
                     </div>
 
-                    <h3 class="h3 blog-item-title">Инструменты и фреймворки QA, которые (не) нужно знать</h3>
+                    <h4 class="h3 blog-item-title">Инструменты и фреймворки QA, которые (не) нужно знать</h4>
 
 
                   </div>
@@ -1538,13 +1638,13 @@
 
           <li class="social-item">
             <a href="https://www.linkedin.com/in/ruslan-m/" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <ion-icon name="logo-linkedin"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M444.17 32H70.28C49.85 32 32 46.7 32 66.89v374.72C32 461.91 49.85 480 70.28 480h373.78c20.54 0 35.94-18.21 35.94-38.39V66.89C480.12 46.7 464.6 32 444.17 32zm-273.3 373.43h-64.18V205.88h64.18zM141 175.54h-.46c-20.54 0-33.84-15.29-33.84-34.43 0-19.49 13.65-34.42 34.65-34.42s33.85 14.82 34.31 34.42c-.01 19.14-13.31 34.43-34.66 34.43zm264.43 229.89h-64.18V296.32c0-26.14-9.34-44-32.56-44-17.74 0-28.24 12-32.91 23.69-1.75 4.2-2.22 9.92-2.22 15.76v113.66h-64.18V205.88h64.18v27.77c9.34-13.3 23.93-32.44 57.88-32.44 42.13 0 74 27.77 74 87.64z"/></svg>
             </a>
           </li>
 
           <li class="social-item">
             <a href="https://wa.me/994102521295" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
-              <ion-icon name="logo-whatsapp"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M414.73 97.1A222.14 222.14 0 00256.94 32C134 32 33.92 131.58 33.87 254a220.61 220.61 0 0029.78 111L32 480l118.25-30.87a223.63 223.63 0 00106.6 27h.09c122.93 0 223-99.59 223.06-222A220.18 220.18 0 00414.73 97.1zM256.94 438.66h-.08a185.75 185.75 0 01-94.36-25.72l-6.77-4-70.17 18.32 18.73-68.09-4.41-7A183.46 183.46 0 0171.53 254c0-101.73 83.21-184.5 185.48-184.5a185 185 0 01185.33 184.64c-.04 101.74-83.21 184.52-185.4 184.52zm101.69-138.19c-5.57-2.78-33-16.2-38.08-18.05s-8.83-2.78-12.54 2.78-14.4 18-17.65 21.75-6.5 4.16-12.07 1.38-23.54-8.63-44.83-27.53c-16.57-14.71-27.75-32.87-31-38.42s-.35-8.56 2.44-11.32c2.51-2.49 5.57-6.48 8.36-9.72s3.72-5.56 5.57-9.26.93-6.94-.46-9.71-12.54-30.08-17.18-41.19c-4.53-10.82-9.12-9.35-12.54-9.52-3.25-.16-7-.2-10.69-.2a20.53 20.53 0 00-14.86 6.94c-5.11 5.56-19.51 19-19.51 46.28s20 53.68 22.76 57.38 39.3 59.73 95.21 83.76a323.11 323.11 0 0031.78 11.68c13.35 4.22 25.5 3.63 35.1 2.2 10.71-1.59 33-13.42 37.63-26.38s4.64-24.06 3.25-26.37-5.11-3.71-10.69-6.48z" fill-rule="evenodd"/></svg>
             </a>
           </li>
 
@@ -1560,22 +1660,22 @@
 
           <li class="social-item">
             <a href="https://www.instagram.com/un.rus/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
-              <ion-icon name="logo-instagram"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M349.33 69.33a93.62 93.62 0 0193.34 93.34v186.66a93.62 93.62 0 01-93.34 93.34H162.67a93.62 93.62 0 01-93.34-93.34V162.67a93.62 93.62 0 0193.34-93.34h186.66m0-37.33H162.67C90.8 32 32 90.8 32 162.67v186.66C32 421.2 90.8 480 162.67 480h186.66C421.2 480 480 421.2 480 349.33V162.67C480 90.8 421.2 32 349.33 32z"/><path d="M377.33 162.67a28 28 0 1128-28 27.94 27.94 0 01-28 28zM256 181.33A74.67 74.67 0 11181.33 256 74.75 74.75 0 01256 181.33m0-37.33a112 112 0 10112 112 112 112 0 00-112-112z"/></svg>
             </a>
           </li>
 
         </ul>
 
-        <div class="">
+        <div class="contact-details">
 
           <div class="separator"></div>
 
-          <ul class=" contacts-list-page">
+          <ul class="contacts-list-page">
 
             <li class="contact-item">
 
               <div class="icon-box">
-                <ion-icon name="mail-outline"></ion-icon>
+                <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="48" y="96" width="416" height="320" rx="40" ry="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M112 160l144 112 144-112"/></svg>
               </div>
 
               <div class="contact-info">
@@ -1589,7 +1689,7 @@
             <li class="contact-item">
 
               <div class="icon-box">
-                <ion-icon name="phone-portrait-outline"></ion-icon>
+                <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="128" y="16" width="256" height="480" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M176 16h24a8 8 0 018 8h0a16 16 0 0016 16h64a16 16 0 0016-16h0a8 8 0 018-8h24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
               </div>
 
               <div class="contact-info">
@@ -1614,20 +1714,21 @@
 
             <input type="hidden" name="_subject" value="New message from ruslan-muradov.tech">
             <input type="hidden" name="_next" value="https://ruslan-muradov.tech/thanks.html">
+            <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
             <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" aria-label="Full name"
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" aria-label="Full name" autocomplete="name" maxlength="120"
                 required data-form-input>
 
-              <input type="email" name="email" class="form-input" placeholder="Email address" aria-label="Email address"
+              <input type="email" name="email" class="form-input" placeholder="Email address" aria-label="Email address" autocomplete="email" maxlength="160"
                 required data-form-input>
             </div>
 
-            <textarea name="message" class="form-input" placeholder="Your message" aria-label="Your message" required
+            <textarea name="message" class="form-input" placeholder="Your message" aria-label="Your message" maxlength="2000" required
               data-form-input></textarea>
 
             <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
+              <svg class="ic" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M473 39.05a24 24 0 00-25.5-5.46L47.47 185h-.08a24 24 0 001 45.16l.41.13 137.3 58.63a16 16 0 0015.54-3.59L422 80a7.07 7.07 0 0110 10L226.66 310.26a16 16 0 00-3.59 15.54l58.65 137.38c.06.2.12.38.19.57 3.2 9.27 11.3 15.81 21.09 16.25h1a24.63 24.63 0 0023-15.46L478.39 64.62A24 24 0 00473 39.05z"/></svg>
               <span>Send message</span>
             </button>
 
@@ -1649,13 +1750,7 @@
   <!--
     - custom js link
   -->
-  <script src="./assets/js/script.js?v=8"></script>
-
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="./assets/js/script.js?v=11" defer></script>
 
 </body>
 

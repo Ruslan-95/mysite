@@ -9,7 +9,7 @@
 ![Stack](https://img.shields.io/badge/stack-HTML%20·%20CSS%20·%20Vanilla%20JS-f5c451)
 ![No build](https://img.shields.io/badge/build-none%20needed-2ea44f)
 
-[![Site preview](assets/images/og-cover.png)](https://ruslan-muradov.tech)
+[![Site preview](assets/images/og-cover.jpg)](https://ruslan-muradov.tech)
 
 </div>
 

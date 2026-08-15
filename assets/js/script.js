@@ -4,7 +4,10 @@
 const sidebar = document.querySelector('[data-sidebar]');
 const sidebarBtn = document.querySelector('[data-sidebar-btn]');
 
-sidebarBtn?.addEventListener('click', () => sidebar?.classList.toggle('active'));
+sidebarBtn?.addEventListener('click', () => {
+  const open = sidebar?.classList.toggle('active');
+  sidebarBtn.setAttribute('aria-expanded', String(Boolean(open)));
+});
 
 // project modal
 const testimonialsItems = document.querySelectorAll('[data-testimonials-item]');
@@ -76,7 +79,12 @@ const pages = document.querySelectorAll('[data-page]');
 
 const showPage = (name) => {
   pages.forEach((page) => page.classList.toggle('active', page.dataset.page === name));
-  navigationLinks.forEach((link) => link.classList.toggle('active', link.dataset.navLink === name));
+  navigationLinks.forEach((link) => {
+    const current = link.dataset.navLink === name;
+    link.classList.toggle('active', current);
+    if (current) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
 };
 
 navigationLinks.forEach((link) => {
@@ -91,7 +99,7 @@ navigationLinks.forEach((link) => {
 const initialPage = window.location.hash.slice(1);
 if ([...pages].some((page) => page.dataset.page === initialPage)) showPage(initialPage);
 
-// competency radar (Resume page)
+// competency radar (About page)
 const radarSvg = document.getElementById('competency-radar');
 
 if (radarSvg) {
@@ -167,29 +175,33 @@ if (radarSvg) {
   // labelled maturity rings + axes
   MATURITY_RINGS.forEach((ring) => {
     const points = COMPETENCIES.map((_, i) => pointAt(i, RADIUS * ring.value).join(',')).join(' ');
-    radarSvg.appendChild(el('polygon', { points, class: 'radar-grid' }));
+    radarSvg.appendChild(el('polygon', { points, class: 'radar-grid', 'aria-hidden': 'true' }));
 
     const ringLabel = el('text', {
       x: CX + 6, y: CY - RADIUS * ring.value + 11, 'text-anchor': 'start', class: 'radar-ring-label',
+      'aria-hidden': 'true',
     });
     ringLabel.textContent = ring.label;
     radarSvg.appendChild(ringLabel);
   });
   COMPETENCIES.forEach((_, i) => {
     const [x, y] = pointAt(i, RADIUS);
-    radarSvg.appendChild(el('line', { x1: CX, y1: CY, x2: x, y2: y, class: 'radar-axis' }));
+    radarSvg.appendChild(el('line', { x1: CX, y1: CY, x2: x, y2: y, class: 'radar-axis', 'aria-hidden': 'true' }));
   });
 
   // value shape
   const shapePoints = COMPETENCIES.map((c, i) => pointAt(i, RADIUS * c.value).join(',')).join(' ');
-  radarSvg.appendChild(el('polygon', { points: shapePoints, class: 'radar-shape' }));
+  radarSvg.appendChild(el('polygon', { points: shapePoints, class: 'radar-shape', 'aria-hidden': 'true' }));
 
   const dots = [];
   const labels = [];
 
   const detailLevel = document.querySelector('[data-competency-level]');
 
+  let current = 0;
+
   const select = (index) => {
+    current = index;
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
     labels.forEach((label, i) => label.classList.toggle('active', i === index));
     if (detailTitle) detailTitle.textContent = COMPETENCIES[index].label;
@@ -197,6 +209,14 @@ if (radarSvg) {
     if (detailLevel) {
       detailLevel.textContent = COMPETENCIES[index].level;
       detailLevel.dataset.level = COMPETENCIES[index].level.toLowerCase();
+    }
+
+    // restart the swap animation so each change reads as a deliberate transition
+    const panel = document.querySelector('[data-competency-detail]');
+    if (panel) {
+      panel.classList.remove('is-swapping');
+      void panel.offsetWidth;
+      panel.classList.add('is-swapping');
     }
   };
 
@@ -212,7 +232,7 @@ if (radarSvg) {
 
     const dot = el('circle', {
       cx: x, cy: y, r: 6, class: 'radar-dot', tabindex: '0', role: 'button',
-      'aria-label': c.label,
+      'aria-label': `${c.label} — ${c.level}`,
     });
     dot.addEventListener('mouseenter', () => select(i));
     dot.addEventListener('focus', () => select(i));
@@ -222,7 +242,7 @@ if (radarSvg) {
 
     const [lx, ly] = pointAt(i, LABEL_RADIUS);
     const anchor = Math.abs(lx - CX) < 10 ? 'middle' : lx > CX ? 'start' : 'end';
-    const label = el('text', { x: lx, y: ly, 'text-anchor': anchor, class: 'radar-label' });
+    const label = el('text', { x: lx, y: ly, 'text-anchor': anchor, class: 'radar-label', 'aria-hidden': 'true' });
     const words = c.label.split(' ');
     const half = Math.ceil(words.length / 2);
     const lines = words.length > 2 ? [words.slice(0, half).join(' '), words.slice(half).join(' ')] : [c.label];
@@ -237,7 +257,54 @@ if (radarSvg) {
     labels.push(label);
   });
 
+  // autoplay: cycle through competencies, pause while the user interacts
+  const CYCLE_MS = 5200;
+  const chart = radarSvg.closest('[data-competency-chart]') ?? radarSvg.parentElement;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let cycleTimer = null;
+  let paused = false;
+
+  const stopCycle = () => {
+    if (cycleTimer) {
+      clearInterval(cycleTimer);
+      cycleTimer = null;
+    }
+  };
+
+  const startCycle = () => {
+    stopCycle();
+    if (paused || reduceMotion.matches) return;
+    cycleTimer = setInterval(() => {
+      select((current + 1) % COMPETENCIES.length);
+    }, CYCLE_MS);
+  };
+
+  // manual interaction takes over; autoplay resumes when the pointer leaves
+  const pause = () => {
+    paused = true;
+    stopCycle();
+  };
+
+  const resume = () => {
+    paused = false;
+    startCycle();
+  };
+
+  if (chart) {
+    chart.addEventListener('mouseenter', pause);
+    chart.addEventListener('mouseleave', resume);
+    chart.addEventListener('focusin', pause);
+    chart.addEventListener('focusout', (event) => {
+      if (!chart.contains(event.relatedTarget)) resume();
+    });
+    chart.addEventListener('touchstart', pause, { passive: true });
+  }
+
+  document.addEventListener('visibilitychange', () => (document.hidden ? stopCycle() : startCycle()));
+  reduceMotion.addEventListener('change', startCycle);
+
   select(0);
+  startCycle();
 }
 
 // live local time (Baku, GMT+4) in the sidebar
@@ -251,7 +318,13 @@ if (localTime) {
     second: '2-digit',
     hour12: false,
   });
+  let clockTimer = null;
   const tick = () => { localTime.textContent = formatter.format(new Date()); };
-  tick();
-  setInterval(tick, 1000);
+  const runClock = () => {
+    clearInterval(clockTimer);
+    tick();
+    if (!document.hidden) clockTimer = setInterval(tick, 1000);
+  };
+  runClock();
+  document.addEventListener('visibilitychange', runClock);
 }
