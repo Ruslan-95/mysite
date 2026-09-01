@@ -95,23 +95,34 @@
   </script>
 
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9YELV4HFY"></script>
+  <!-- Analytics: GA4 + Microsoft Clarity. На локальных превью теги не грузятся, чтобы не пачкать статистику -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-B9YELV4HFY');
-  </script>
+    (function () {
+      // Считаем только прод: localhost, file:// и любые превью-домены статистику не пачкают.
+      // При смене домена сайта этот список нужно обновить, иначе аналитика перестанет собираться.
+      var ANALYTICS_HOSTNAMES = ['ruslan-muradov.tech', 'www.ruslan-muradov.tech'];
+      if (ANALYTICS_HOSTNAMES.indexOf(location.hostname) === -1) return;
 
+      var GA4_MEASUREMENT_ID = 'G-B9YELV4HFY';
+      var CLARITY_PROJECT_ID = 'y2x8iy7uvf';
 
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "y2x8iy7uvf");
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', GA4_MEASUREMENT_ID);
+
+      window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+
+      [
+        'https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID,
+        'https://www.clarity.ms/tag/' + CLARITY_PROJECT_ID
+      ].forEach(function (src) {
+        var tag = document.createElement('script');
+        tag.async = true;
+        tag.src = src;
+        document.head.appendChild(tag);
+      });
+    })();
   </script>
 
   <!--
