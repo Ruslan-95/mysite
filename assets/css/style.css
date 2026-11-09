@@ -389,12 +389,12 @@
   
   .sidebar {
     margin-bottom: 15px;
-    max-height: 112px;
+    max-height: 175px; /* includes the CTA row */
     overflow: clip;
     transition: var(--transition-2);
   }
-  
-  .sidebar.active { max-height: 470px; }
+
+  .sidebar.active { max-height: 535px; }
   
   .sidebar-info {
     position: relative;
@@ -1706,11 +1706,11 @@
      */
 
     .sidebar {
-      max-height: 180px;
+      max-height: 250px; /* includes the CTA row */
       margin-bottom: 30px;
     }
-  
-    .sidebar.active { max-height: 660px; }
+
+    .sidebar.active { max-height: 730px; }
   
     .sidebar-info { gap: 25px; }
   
@@ -2266,3 +2266,207 @@
 .modal-close-btn .ic { width: 18px; height: 18px; }
 
 .social-link .ic { width: 1em; height: 1em; }
+
+/*-----------------------------------*\
+  #CTA — "Get in touch" buttons and end-of-tab banner
+\*-----------------------------------*/
+
+.cta-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  white-space: nowrap;
+  text-align: center;
+  transition: var(--transition-1);
+}
+
+.cta-btn-primary {
+  background: var(--orange-yellow-crayola);
+  color: var(--eerie-black-1);
+  box-shadow: var(--shadow-2);
+}
+
+.cta-btn-primary:hover { filter: brightness(1.08); }
+
+.cta-btn-secondary {
+  color: var(--orange-yellow-crayola);
+  border: 1px solid var(--jet);
+}
+
+.cta-btn-secondary:hover { border-color: var(--orange-yellow-crayola); }
+
+.cta-btn:focus-visible {
+  outline: 2px solid var(--orange-yellow-crayola);
+  outline-offset: 2px;
+}
+
+.sidebar-cta {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.sidebar-cta .cta-btn { flex: 1 1 0; }
+
+.cta-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 14px;
+  background: var(--border-gradient-onyx);
+  box-shadow: var(--shadow-2);
+  z-index: 1;
+}
+
+.cta-banner::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--bg-gradient-jet);
+  z-index: -1;
+}
+
+.cta-banner-title {
+  color: var(--white-2);
+  margin-bottom: 6px;
+}
+
+.cta-banner-text {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+}
+
+@media (min-width: 580px) {
+  .sidebar-cta { margin-top: 25px; max-width: 360px; }
+
+  .cta-btn { font-size: var(--fs-6); padding: 12px 20px; }
+
+  .cta-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 25px 30px;
+  }
+}
+
+@media (min-width: 1250px) {
+  /* stacked so the narrow sidebar keeps its width */
+  .sidebar-cta { flex-direction: column; margin-top: 20px; max-width: none; }
+
+  .sidebar-cta .cta-btn { padding: 11px 10px; font-size: var(--fs-7); }
+}
+
+/*-----------------------------------*\
+  #CONTACT MENU — channel picker opened by "Get in touch"
+\*-----------------------------------*/
+
+.contact-menu {
+  width: min(420px, calc(100% - 30px));
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--jet);
+  border-radius: 20px;
+  background: var(--eerie-black-2);
+  color: var(--white-2);
+  box-shadow: var(--shadow-5);
+}
+
+.contact-menu::backdrop { background: hsla(0, 0%, 5%, 0.8); }
+
+.contact-menu-inner { padding: 22px; }
+
+.contact-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.contact-menu-title { color: var(--white-2); }
+
+.contact-menu-close {
+  color: var(--light-gray);
+  font-size: 24px;
+  line-height: 1;
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition: var(--transition-1);
+}
+
+.contact-menu-close:hover { color: var(--white-2); background: var(--onyx); }
+
+.contact-menu-text {
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+  margin-bottom: 16px;
+}
+
+.contact-menu-list {
+  display: grid;
+  gap: 10px;
+}
+
+.contact-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--jet);
+  border-radius: 14px;
+  color: var(--white-2);
+  transition: var(--transition-1);
+}
+
+.contact-menu-item:hover,
+.contact-menu-item:focus-visible {
+  border-color: var(--orange-yellow-crayola);
+  background: var(--onyx);
+  outline: none;
+}
+
+.contact-menu-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--orange-yellow-crayola);
+}
+
+.contact-menu-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+}
+
+.contact-menu-label small {
+  color: var(--light-gray-70);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-300);
+}
+
+/* phones: bottom sheet */
+@media (max-width: 579.98px) {
+  .contact-menu {
+    width: 100%;
+    max-width: 100%;
+    margin: auto 0 0;
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+  }
+
+  .contact-menu-inner { padding: 22px 18px 28px; }
+}

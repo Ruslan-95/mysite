@@ -398,12 +398,36 @@ document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"], a[href*="wa.me"]
         : href.includes('t.me') ? 'telegram'
         : href.includes('linkedin') ? 'linkedin'
         : 'instagram';
-      track('contact_click', { label: channel, location: activeTab });
+      track('contact_click', { label: channel, location: activeTab, source: link.dataset.contactSource ?? 'page' });
     });
   });
 
-// CV download
-document.querySelector('a[href$=".pdf"]')?.addEventListener('click', () => track('cv_download', { label: 'pdf' }));
+// "Get in touch" CTAs open a channel picker (LinkedIn / WhatsApp / Telegram / email or form)
+const contactMenu = document.getElementById('contact-menu');
+const openContactTab = () => document.querySelector('[data-nav-link="contact"]')?.click();
+
+document.querySelectorAll('[data-contact-menu-open]').forEach((button) => {
+  button.addEventListener('click', () => {
+    track('cta_click', { label: button.dataset.ctaPlacement ?? 'unknown', location: activeTab });
+    if (typeof contactMenu?.showModal === 'function') contactMenu.showModal();
+    else openContactTab();
+  });
+});
+
+contactMenu?.querySelector('[data-contact-menu-close]')?.addEventListener('click', () => contactMenu.close());
+// a click on the dimmed backdrop lands on the <dialog> itself
+contactMenu?.addEventListener('click', (event) => { if (event.target === contactMenu) contactMenu.close(); });
+contactMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => contactMenu.close()));
+contactMenu?.querySelector('[data-contact-menu-form]')?.addEventListener('click', () => {
+  track('contact_click', { label: 'form', location: activeTab, source: 'cta_menu' });
+  contactMenu.close();
+  openContactTab();
+});
+
+// CV download (sidebar button + Resume tab link)
+document.querySelectorAll('a[href$=".pdf"]').forEach((link) => {
+  link.addEventListener('click', () => track('cv_download', { label: 'pdf', location: link.dataset.cvPlacement ?? 'resume' }));
+});
 
 // which companies people open
 document.querySelectorAll('[data-testimonials-item]').forEach((item) => {
