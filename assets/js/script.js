@@ -398,7 +398,8 @@ document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"], a[href*="wa.me"]
         : href.includes('t.me') ? 'telegram'
         : href.includes('linkedin') ? 'linkedin'
         : 'instagram';
-      track('contact_click', { label: channel, location: activeTab, source: link.dataset.contactSource ?? 'page' });
+      // `via`, not `source`: GA4 treats `source` as a traffic-source override
+      track('contact_click', { label: channel, location: activeTab, via: link.dataset.contactSource ?? 'page' });
     });
   });
 
@@ -419,7 +420,7 @@ contactMenu?.querySelector('[data-contact-menu-close]')?.addEventListener('click
 contactMenu?.addEventListener('click', (event) => { if (event.target === contactMenu) contactMenu.close(); });
 contactMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => contactMenu.close()));
 contactMenu?.querySelector('[data-contact-menu-form]')?.addEventListener('click', () => {
-  track('contact_click', { label: 'form', location: activeTab, source: 'cta_menu' });
+  track('contact_click', { label: 'form', location: activeTab, via: 'cta_menu' });
   contactMenu.close();
   openContactTab();
 });
