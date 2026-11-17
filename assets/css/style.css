@@ -1452,9 +1452,7 @@
 
   .speaking-title a {
     color: inherit;
-    text-decoration: underline;
-    text-decoration-color: var(--orange-yellow-crayola);
-    text-underline-offset: 3px;
+    text-decoration: none;
     transition: color 0.2s ease;
   }
 
