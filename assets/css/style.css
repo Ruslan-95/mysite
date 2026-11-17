@@ -1450,6 +1450,19 @@
     font-weight: var(--fw-500);
   }
 
+  .speaking-title a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--orange-yellow-crayola);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .speaking-title a:hover,
+  .speaking-title a:focus-visible {
+    color: var(--orange-yellow-crayola);
+  }
+
   .speaking-meta {
     display: block;
     color: var(--light-gray-70);
